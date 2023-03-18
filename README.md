@@ -5,4 +5,4 @@ Learn the terminal with Banzi the gorilla! This project aims to provide a teachi
 
  ![TerminalTeacher screenshot - a gorilla teaches you how to use Unix](/terminal_teacher_ts/src/assets/demo1.png)
 
- TODO: Host this on GitHub for everyone to enjoy
+ TODO: Host this on GitHub for everyone to enjoy 
