@@ -4,7 +4,6 @@ import TextField from '@mui/material/TextField';
 import VirtualFileSystem from "./terminal/VirtualFileSystem";
 import Instructor from "./teacher/Teacher"
 import title from './assets/title_cropped.jpg';
-import textWindowImage from "./assets/text_box.png";
 
 const username = "bonzi$ "
 const terminalLineCount = 10
@@ -142,8 +141,7 @@ function App() {
   </div>
 
   <div id="instructor">
-  <img src={textWindowImage} alt="window" className="instructor-window"></img>
-  <img className="instructor-image" src={currentState.instructor.pose} alt="Bonzi buddy"></img>
+  <img className="instructor-window" src={currentState.instructor.pose} alt="Bonzi buddy"></img>
   <span className="instructor-hint-box">Bonzi says: {currentState.instructor.suggestion}</span>
   </div>
   <div id="terminal">

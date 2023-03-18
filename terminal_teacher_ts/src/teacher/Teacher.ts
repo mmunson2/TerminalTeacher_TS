@@ -1,9 +1,10 @@
-import standard from "../assets/Default_Transparent.png"
-import approving from "../assets/Looking_Good_Transparent.png"
-import explaining from "../assets/Info_Transparent.png"
-import apologizing from "../assets/Sorry_Transparent.png"
+import standard from "../assets/Standard.png"
+import approving from "../assets/Glasses.png"
+import explaining from "../assets/Reading.png"
+import apologizing from "../assets/Shrug.png"
 import { ResultCode } from "../terminal/Interfaces/IProcessResult"
 import ProcessResult from "../terminal/ProcessResult"
+import Suggestions from "./suggestions.json"
 
 const InstructorPoses = {
     standard: standard,
@@ -12,24 +13,15 @@ const InstructorPoses = {
     apologizing: apologizing
 }
 
-const approvalMessages = [
-    "Looking good!",
-    "Nice one!",
-    "Sweet!",
-    "You're a pro!",
-    "Amazing!",
-    "Excellent!"
-]
-
 /********************************************************************************
  * Teacher
  * 
- * Looks at the result of the last command and determines:
- * 
- * - Was it successful? If so, commend the student and suggest additional commands
- * - Was it unsuccessful? If so, provide additional information on the command
- * 
- * @todo: Should be refactored. Text should be retrieved from an external JSON.
+ * Provides feedback to the user on the command they just entered. When a user
+ * executes a command successfully the teacher:
+ *  - Encourages the user
+ *  - Suggests something else for them to do
+ * When a command fails the teacher provides information about the command and
+ * an example of how to use it correctly.
  *******************************************************************************/
 class Teacher {
     private _suggestion: string = "";
@@ -44,11 +36,7 @@ class Teacher {
         return this._suggestion;
     }
 
-    set suggestion(newSuggestion) {
-        if(typeof(newSuggestion) !== "string") {
-            throw new TypeError("Suggestion should be of type string")
-        }
-        
+    set suggestion(newSuggestion: string) {
         this._suggestion = newSuggestion;
     }
 
@@ -60,68 +48,80 @@ class Teacher {
         this._pose = pose;
     }
 
-    parseResult(result: ProcessResult) {
+    public parseResult(result: ProcessResult) {
         const code = result.resultCode;
-        const command = result.processInput.command;
 
-        if(code === ResultCode.SUCCESS) {
+        switch(code) {
+            case ResultCode.SUCCESS:
+                this.pose = InstructorPoses.approving;
+                console.log(this.getAffirmationSuggestion(result))
+                this.suggestion = this.getAffirmationSuggestion(result);
+                break;
+            case ResultCode.ERROR:
+                this.pose = InstructorPoses.explaining;
+                this.suggestion =this.getErrorSuggestion(result);
+                break;
+            case ResultCode.NOT_FOUND:
+                this.pose = InstructorPoses.apologizing;
+                this.suggestion = this.getRandomSuggestion(Suggestions["not_found"]);
+                break;
+            default:
+                console.error("Invalid ResultCode in Teacher.ts");
+                console.error(result);
 
-            const randomIndex = Math.floor(Math.random() * approvalMessages.length)
+                this.pose = InstructorPoses.apologizing;
+                this.suggestion = this.getRandomSuggestion(Suggestions["error"]);
+        }
+    }
 
-            this.suggestion = approvalMessages[randomIndex]
+    // Expects an array of possible responses. Selects a random element from the array
+    private getRandomSuggestion(suggestions: Array<string>): string {
+        if(suggestions.length < 1) {
+            console.error("Teacher.ts: getRandomSuggestion received an array of length zero");
+            return "";
+        }
 
-            if(command === "mkdir") {
-                this.suggestion += " If you'd like to view the directory you just made, try using \"ls\"."
-            }
-            else if(command === "ls" && result.processInput.arguments.length > 0 && result.processInput.arguments[0] === "-l") {
-                this.suggestion += " Now maybe we can check out some of these directories with \"cd\"..."
-            }
-            else if(command === "ls") {
-                this.suggestion += " You can try this command with a \"-l\" option to see the sizes of files and directories."
-            }
-            else if(command === "touch") {
-                this.suggestion += " If you'd like to view the directory you just made, try using \"ls\"."
-            }
-            else if(command === "cd") {
-                this.suggestion += " Have you tried executing a previous command with the up arrow?"
-            }
-            else if(command === "help") {
-                this.suggestion += " Enter any of these commands into the terminal and I'll tell you more!"
-            }
+        let randomIndex = Math.floor(Math.random() * suggestions.length);
+        return suggestions[randomIndex];
+    }
 
-            this.pose = InstructorPoses.approving;
+    // Concatenates an affirmation string and a suggestion of what to do next
+    private getAffirmationSuggestion(result: ProcessResult): string {
+        const command: string = result.processInput.command;
+        
+        if(!(result.processInput.command in Suggestions.commands)) {
+            console.error(`Unrecognized command in Teacher.ts: ${command}`)
+            return this.getRandomSuggestion(Suggestions["error"]);
         }
-        else if(command === "" ) {
-            this.suggestion = "";
-            this.pose = InstructorPoses.standard;
-        }
-        else if(command === "mkdir") {
-            this.suggestion = "The mkdir command is used to create a directory. You can name a directory anything you'd like! Try \"mkdir my_directory\""
-            this.pose = InstructorPoses.explaining;
-        }
-        else if(command === "ls") {
-            this.suggestion = "The ls command lists the contents of the current directory. It doesn't need any arguments, but try adding \"-l\" to view file and directory sizes!"
-            this.pose = InstructorPoses.explaining;
-        }
-        else if(command === "touch") {
-            this.suggestion = "The touch command creates a blank file. You can name a file anything you'd like, but this terminal requires an extension to be added like \".txt\". Try \"touch my_file.txt\""
-            this.pose = InstructorPoses.explaining;
-        }
-        else if(command === "cd") {
-            this.suggestion = "The cd command changes the current directory. Enter the name of the directory you want to change to as an argument like \"cd my_directory\". To go back to the root directory, use \"cd /\""
-            this.pose = InstructorPoses.explaining;
-        }
-        else if(command === "cat") {
-            this.suggestion = "The cat command displays the contents of a file on the terminal. Try navigating to the dev folder and running \"cat main.java\"";
-            this.pose = InstructorPoses.explaining;
-        }
-        else if (code === ResultCode.NOT_FOUND) {
-            this.suggestion = "Not all Unix commands are implemented, sorry :)"
-            this.pose = InstructorPoses.apologizing;
+        // TODO: devise a better way to handle argument-specific suggestions
+        else if(command === "ls" && result.processInput.arguments[0] === "-l") {
+            const affirmation = this.getRandomSuggestion(Suggestions["affirmations"]);
+            const suggestion = this.getRandomSuggestion(Suggestions.commands.ls["success_with_-l"])
+
+            return affirmation + " " + suggestion;
         }
         else {
-            this.suggestion = "hmm, I don't know this one but I should... Ask the devs maybe?"
-            this.pose = InstructorPoses.apologizing;
+            const affirmation = this.getRandomSuggestion(Suggestions["affirmations"]);
+            const suggestion = this.getRandomSuggestion(Suggestions["commands"]
+            [command as keyof typeof Suggestions.commands].success)
+
+            return affirmation + " " + suggestion;
+        }
+    }
+
+    // Retrieves information from the command's error key
+    private getErrorSuggestion(result: ProcessResult): string {
+        const command: string = result.processInput.command;
+
+        if(!(result.processInput.command in Suggestions.commands)) {
+            console.error(`Unrecognized command in Teacher.ts: ${command}`)
+            return this.getRandomSuggestion(Suggestions["error"]);
+        }
+        else {
+            const suggestion = this.getRandomSuggestion(Suggestions["commands"]
+            [command as keyof typeof Suggestions.commands].error)
+
+            return suggestion;
         }
     }
 

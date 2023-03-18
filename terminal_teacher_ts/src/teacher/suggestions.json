@@ -1,0 +1,85 @@
+{
+    "commands": {
+        "ls": {
+            "error": [
+                "The ls command lists the contents of the current directory. It doesn't need any arguments, but try adding \"-l\" to view file and directory sizes!"
+            ],
+            "success": [
+                "You can try this command with a \"-l\" option to see the sizes of files and directories.",
+                "Want to check out some other directories? Check out the \"cd\" command!",
+                "Did you know that \"ls\" is an abbreviation for \"list\"?",
+                "Did you know that you can access a previously executed command with the up arrow?"
+            ],
+            "success_with_-l": [
+                "The size value usually represents the amount of bytes a file or directory contains. In this terminal it shows the amount of characters in a TextFile.",
+                "Now maybe we can check out some of these directories with \"cd\"...",
+                "Did you know that \"ls\" is an abbreviation for \"list\"?",
+                "Did you know that you can access a previously executed command with the up arrow?"
+            ]
+        },
+        "mkdir": {
+            "error": [
+                "The mkdir command is used to create a directory. You can name a directory anything you'd like! Try \"mkdir my_directory\"."
+            ],
+            "success": [
+                "If you'd like to view the directory you just made, try using \"ls\".",
+                "Did you know that \"mkdir\" is an abbreviation for \"make directory\"?"
+            ]
+        },
+        "touch": {
+            "error": [
+                "The touch command creates a blank file. You can name a file anything you'd like, but this terminal requires an extension to be added like \".txt\". Try \"touch my_file.txt\"."
+            ],
+            "success": [
+                "If you'd like to view the file you just made, try using \"ls\".",
+                "Your file is empty for now, so \"cat\" won't show you anything. Don't let that stop you though!",
+                "Files can usually be edited with a terminal using a text editor such as VIM, Nano, or Emacs. This terminal doesn't have one yet unfortunately :("
+            ]
+        },
+        "cat": {
+            "error": [
+                "The cat command displays the contents of a file on the terminal. Try navigating to the dev folder and running \"cat main.java\""
+            ],
+            "success": [
+                "For now the only files with contents are those that come with the terminal. Files created with touch will always be empty :(",
+                "Did you know that \"cat\" is an abbreviation for \"concatenate\"?",
+                "Meow"
+            ]
+        },
+        "cd": {
+            "error": [
+                "The cd command changes the current directory. Enter the name of the directory you want to change to as an argument like \"cd my_directory\". To go back to the root directory, use \"cd /\"."
+            ],
+            "success": [
+                "If you want to go more than one directory deeper, you can cd to a relative path by separating the directory names with \"/\".",
+                "To cd back to the root directory, try \"cd /\"",
+                "Did you know that \"cd\" stands for \"change directory\"?",
+                "Did you know that you can access a previously executed command with the up arrow?"
+            ]
+        },
+        "help": {
+            "error": [
+                "The help command gets details about the available commands. For a more detailed explanation of a command, enter the command as an argument. Try \"help mkdir\"."
+            ],
+            "success": [
+                "The information provided by the terminal can be a little sparse, but don't worry! I'm here to tell you about any of these commands.",
+                "Did you know that many terminals actually use \"man\", an abbreviation for \"manual\" to get more information?"
+            ]
+        }
+    },
+    "affirmations": [
+        "Looking good!",
+        "Nice one!",
+        "Sweet!",
+        "You're a pro!",
+        "Amazing!",
+        "Excellent!"
+    ],
+    "not_found": [
+        "Not all Unix commands are implemented, sorry :)",
+        "I'm afraid I don't know that one... Check out the available commands with \"help\""
+    ],
+    "error": [
+        "Hmm... I don't know that command but I really should. Could you ask the devs to teach me about it?"
+    ]
+}

@@ -34,7 +34,7 @@
 }
 
 .instructor-hint-box {
-  margin-left: 220px;
+  margin-left: 310px;
   position: relative;
   vertical-align: top;
   max-width: 70%;
@@ -45,7 +45,7 @@
 .instructor-window {
   position: absolute;
   order: 2;
-  width: 200px;
+  width: 300px;
   height: 200px;
 }
 
