@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/TerminalTeacher_TS/static/css/main.b3858b5a.css",
-    "main.js": "/TerminalTeacher_TS/static/js/main.f9137a8d.js",
-    "static/js/787.04f59d63.chunk.js": "/TerminalTeacher_TS/static/js/787.04f59d63.chunk.js",
-    "static/media/title_cropped.jpg": "/TerminalTeacher_TS/static/media/title_cropped.2c269d852e9468ea1abe.jpg",
-    "static/media/Shrug.png": "/TerminalTeacher_TS/static/media/Shrug.c7248a83e891988d0d2a.png",
-    "static/media/Standard.png": "/TerminalTeacher_TS/static/media/Standard.cd13cb729953dbca7188.png",
-    "static/media/Glasses.png": "/TerminalTeacher_TS/static/media/Glasses.9c1acf2049c8917c21c6.png",
-    "static/media/Reading.png": "/TerminalTeacher_TS/static/media/Reading.e9b6e1d8aa0723278643.png",
-    "index.html": "/TerminalTeacher_TS/index.html",
-    "main.b3858b5a.css.map": "/TerminalTeacher_TS/static/css/main.b3858b5a.css.map",
-    "main.f9137a8d.js.map": "/TerminalTeacher_TS/static/js/main.f9137a8d.js.map",
-    "787.04f59d63.chunk.js.map": "/TerminalTeacher_TS/static/js/787.04f59d63.chunk.js.map"
+    "main.css": "/static/css/main.b3858b5a.css",
+    "main.js": "/static/js/main.e68040a9.js",
+    "static/js/787.04f59d63.chunk.js": "/static/js/787.04f59d63.chunk.js",
+    "static/media/title_cropped.jpg": "/static/media/title_cropped.2c269d852e9468ea1abe.jpg",
+    "static/media/Shrug.png": "/static/media/Shrug.c7248a83e891988d0d2a.png",
+    "static/media/Standard.png": "/static/media/Standard.cd13cb729953dbca7188.png",
+    "static/media/Glasses.png": "/static/media/Glasses.9c1acf2049c8917c21c6.png",
+    "static/media/Reading.png": "/static/media/Reading.e9b6e1d8aa0723278643.png",
+    "index.html": "/index.html",
+    "main.b3858b5a.css.map": "/static/css/main.b3858b5a.css.map",
+    "main.e68040a9.js.map": "/static/js/main.e68040a9.js.map",
+    "787.04f59d63.chunk.js.map": "/static/js/787.04f59d63.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b3858b5a.css",
-    "static/js/main.f9137a8d.js"
+    "static/js/main.e68040a9.js"
   ]
 }
