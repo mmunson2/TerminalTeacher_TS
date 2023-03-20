@@ -1,4 +1,4 @@
-import ITextFile from "./Interfaces/ITextFile";
+import ITextFile from "./interfaces/ITextFile";
 import File from "./File";
 
 /********************************************************************************

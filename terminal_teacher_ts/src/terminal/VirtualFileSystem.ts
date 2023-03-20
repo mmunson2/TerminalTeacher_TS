@@ -2,7 +2,7 @@ import Directory from "./Directory";
 import TextFile from "./TextFile"
 import ProcessResult from "./ProcessResult";
 import ProcessInput from "./ProcessInput";
-import {ResultCode} from "./Interfaces/IProcessResult"
+import {ResultCode} from "./interfaces/IProcessResult"
 import Command from "./commands/Command";
 import Cat from "./commands/Cat";
 import Cd from "./commands/Cd";
@@ -57,6 +57,7 @@ class VirtualFileSystem {
         this._currentDirectory = newDirectory;
     }
 
+    // TODO: read this from a JSON file
     createDemoFileSystem() {
         const codeFile1 = new TextFile("demo", "py", `
         if __name__ == "__main__":
@@ -93,6 +94,7 @@ class VirtualFileSystem {
             return this.help(input);
         }
         
+        // TODO: Make this a map
         for(let command of commands) {
             if(input.command === command.name) {
                 return command.execute(input, this)

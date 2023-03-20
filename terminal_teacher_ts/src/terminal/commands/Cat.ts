@@ -1,4 +1,4 @@
-import { ResultCode } from "../Interfaces/IProcessResult";
+import { ResultCode } from "../interfaces/IProcessResult";
 import ProcessInput from "../ProcessInput";
 import ProcessResult from "../ProcessResult";
 import VirtualFileSystem from "../VirtualFileSystem";

@@ -1,4 +1,4 @@
-import IDirectory from "./Interfaces/IDirectory";
+import IDirectory from "./interfaces/IDirectory";
 import File from "./File";
 import TextFile from "./TextFile";
 

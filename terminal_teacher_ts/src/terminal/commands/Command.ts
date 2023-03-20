@@ -1,4 +1,4 @@
-import ICommand from "../Interfaces/ICommand";
+import ICommand from "../interfaces/ICommand";
 import ProcessInput from "../ProcessInput";
 import ProcessResult from "../ProcessResult";
 import VirtualFileSystem from "../VirtualFileSystem";

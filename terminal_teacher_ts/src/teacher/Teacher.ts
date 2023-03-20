@@ -2,7 +2,7 @@ import standard from "../assets/Standard.png"
 import approving from "../assets/Glasses.png"
 import explaining from "../assets/Reading.png"
 import apologizing from "../assets/Shrug.png"
-import { ResultCode } from "../terminal/Interfaces/IProcessResult"
+import { ResultCode } from "../terminal/interfaces/IProcessResult"
 import ProcessResult from "../terminal/ProcessResult"
 import Suggestions from "./suggestions.json"
 

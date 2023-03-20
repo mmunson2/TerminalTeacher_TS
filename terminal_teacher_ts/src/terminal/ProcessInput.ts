@@ -1,4 +1,4 @@
-import IProcessInput from "./Interfaces/IProcessInput";
+import IProcessInput from "./interfaces/IProcessInput";
 
 /********************************************************************************
  * Process Input

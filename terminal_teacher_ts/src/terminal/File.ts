@@ -1,4 +1,4 @@
-import IFile from "./Interfaces/IFile";
+import IFile from "./interfaces/IFile";
 
 /********************************************************************************
  * File

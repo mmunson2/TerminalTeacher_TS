@@ -1,4 +1,4 @@
-import IProcessResult, { ResultCode } from "./Interfaces/IProcessResult";
+import IProcessResult, { ResultCode } from "./interfaces/IProcessResult";
 import ProcessInput from "./ProcessInput";
 
 /********************************************************************************
